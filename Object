@@ -1,0 +1,42 @@
+#define null NULL
+#ifndef ADT_OBJECTH
+#define ADT_OBJECTH
+#include<iostream>
+#include<string>
+using namespace std;
+class Object {
+	private:
+	public:
+		~Object() {
+			dispose();
+		}
+		
+		virtual void dispose() {}
+		
+		virtual string toString() {
+			return string("Object@");
+		}
+
+		virtual bool equals(Object* object) {
+			if(object == null) return false;
+
+			if(this == object) return true;
+			return false;
+		}
+
+		virtual int compareTo(Object* object) {
+			if(object == null) {
+				cout << getClassName() << ": Null pointer exception";
+				exit(1);
+			}
+
+			if(this == object) return 0;
+			if(this < object) return -1;
+			return 1;
+		}
+		
+		static string getClassName() {
+			return string("Object");
+		}
+};
+#endif

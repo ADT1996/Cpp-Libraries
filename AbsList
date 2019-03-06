@@ -1,0 +1,36 @@
+#ifndef ADT_ABSLISTH
+#define ADT_ABSLISTH
+#include<Object>
+
+template<class T> class Abs_List : public Object {
+	protected:
+		long size;
+	public:
+		void add(T*);
+		void addRange(Abs_List<T>*);
+		void insert(T*,long);
+		void insert(Abs_List<T>*,long);
+		void remove(T*);
+		void removeRange(Abs_List<T>*);
+		void removeAt(long);
+		void Sort();
+		void swap(long,long);
+		void swap(T*,T*);
+
+		T* get(long);
+		Abs_List<T>* sub(long,long);
+		Abs_List<T>* sub(long);
+		long indexOf(T*);
+		long getSize();
+		long count(T*);
+		bool contain(T*);
+
+		virtual string toString() {
+			return string("Abstract List<") + T::getClassName() + ">@";
+		}
+		
+		static string getClassName() {
+			return string("Abstract List<") + T::getClassName() + ">";
+		}
+};
+#endif

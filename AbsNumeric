@@ -1,0 +1,234 @@
+#ifndef ADT_NUMERICH
+#define ADT_NUMERICH
+
+#include<Object>
+#include<math.h>
+
+template<class T> class Numeric : public Object {
+	protected:
+		T* value;
+
+	public:
+
+		Numeric() {
+			value = new T;
+			*value = 0;
+		}
+		
+		Numeric(T value) {
+			value = new T;
+			*this->value = value;
+		}
+
+		~Numeric() {
+			Object::dispose();
+			delete value;
+		}
+
+		virtual T get() {
+			return *this->value;
+		}
+
+		virtual void set(T value) {
+			*this->value = value;
+		}
+
+		virtual string toString() {
+			return toString(*value);
+		}
+
+		virtual T sqrt() {
+			if(get() <= 0) {
+				cout << "SQRT exception" << endl;
+				exit(1);
+			}
+			return (T)::sqrt(this->get());
+		}
+
+		static string toString(T value) {
+			string num = string("");
+			string num1 = string("");
+			long long q = value;
+			T e = value - q;
+
+			if (value == 0)
+				return num + '0';
+			else if(q < 0) {
+				num += '-';
+				q = -q;
+			}
+
+			if(q == 0) {
+				num += '0';
+			} else {
+				while(q > 0) {
+					char j =  (q%10);
+					num = (char)(j + 48) + num;
+					q/=10;
+				}
+				
+			}
+
+			if(e > 0) {
+				num+= '.';
+				while(e > 0) {
+					int k = e*10;
+					num += (char)(k+48);
+					e= (e*10) - (long long)(e*10);
+				}
+			}
+			return num;
+		}
+
+		static string getClassName() {
+			return string("Numeric");
+		}
+
+		template<class U> T operator + (Numeric<U> value) {
+			return this->get() + value.get();
+		}
+
+		template<class U> T operator += (Numeric<U> value) {
+			*this->value += value.get();
+			return this->get();
+		}
+
+		template<class U> T operator - (Numeric<U> value) {
+			return this->get() - value.get();
+		}
+
+		template<class U> T operator -= (Numeric<U> value) {
+			*this->value -= value.get();
+			return get();
+		}
+		
+		template<class U> T operator / (Numeric<U> value) {
+			return this->get()/value.value;
+		}
+		
+		template<class U> T operator /= (Numeric<U> value) {
+			*this->value/= value.get();
+			return this->get();
+		}
+		
+		template<class U> T operator * (Numeric<U> value) {
+			return this->get() * value.get();
+		}
+		
+		template<class U> T operator *= (Numeric<U> value) {
+			*this->value *= value.get();
+			return this->get();
+		}
+		
+		template<class U> T operator = (Numeric<U> value) {
+			this->set(value.get());
+			return value.value;
+		}
+		
+		template<class U> bool operator == (Numeric<U> value) {
+			return this->get() == value.get();
+		}
+		
+//		template<class U> bool operator === (Numeric<U> value) {
+//			if(typeid(T) == typeid(U))
+//				return this->get() == value.get();
+//			return false;
+//		}
+		
+		template<class U> bool operator < (Numeric<U> value) {
+			return this->get() < value.get();
+		}
+		
+		template<class U> bool operator <= (Numeric<U> value) {
+			return this->get() <= value.get();
+		}
+		
+		template<class U> bool operator > (Numeric<U> value) {
+			return this->get() > value.get();
+		}
+		
+		template<class U> bool operator >= (Numeric<U> value) {
+			return this->get() >= value.get();
+		}
+		
+		template<class U> bool operator != (Numeric<U> value) {
+			return this->get() != value.get();
+		}
+		
+//		template<class U> bool operator !== (Numeric<U> value) {
+//			if(typeid(T) != typeid(U))
+//				return true;
+//			return this->get() != value.get();
+//		}
+		
+		T operator ! () {
+			return !get();
+		}
+		
+		template<class U> T operator = (U value) {
+			set(value);
+			return value;
+		}
+		
+		template<class U> T operator / (U value) {
+			return get()/value;
+		}
+		
+		template<class U> T operator /= (U value) {
+			*this->value/=value;
+			return this->get();
+		}
+
+		template<class U> T operator + (U value) {
+			return get() + value;
+		}
+
+		template<class U> T operator += (U value) {
+
+			*this->value += value;
+			return *this->value;
+		}
+		
+		template<class U> T operator - (U value) {
+			return get() - value;
+		}
+		
+		template<class U> T operator -= (U value) {
+			*this->value -= value;
+			return *this->value;
+		}
+		
+		template<class U> T operator * (U value) {
+			return *this->get() * value;
+		}
+		
+		template<class U> T operator *= (U value) {
+			*this->value *= value;
+			return this->get();
+		}
+		
+		template<class U> bool operator == (U value) {
+			return this->get() == value;
+		}
+		
+		template<class U> bool operator < (U value) {
+			return this->get() < value;
+		}
+		
+		template<class U> bool operator <= (U value) {
+			return this->get() <= value;
+		}
+		
+		template<class U> bool operator > (U value) {
+			return this->get() > value;
+		}
+		
+		template<class U> bool operator >= (U value) {
+			return this->get() >= value;
+		}
+		
+		template<class U> bool operator != (U value) {
+			return this->get() != value;
+		}
+};
+#endif
