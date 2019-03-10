@@ -1,0 +1,24 @@
+#ifndef ADT_FLOATH
+#define ADT_FLOATH
+
+#include<AbsRealNumeric>
+
+class Float : public AbsRealNumeric<float> {
+	public:
+
+		static const double MAXVALUE = 1.7 * 10E+308;
+		static const double MINVALUE = 1.7 * 10E-308;
+
+		Double() {
+			AbsRealNumeric();
+		}
+
+		Double(double value){
+			AbsRealNumeric(value);
+		}
+
+		static string getClassName() {
+			return string("Double");
+		}
+};
+#endif

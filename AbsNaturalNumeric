@@ -1,0 +1,58 @@
+#ifndef ADT_NATURALABSNumericH
+#define ADT_NATURALABSNumericH
+
+#include<AbsNumeric>
+template<class T> class AbsNaturalNumeric : public AbsNumeric<T> {
+	public:
+		AbsNaturalNumeric() {
+			AbsNumeric();
+		}
+
+		AbsNaturalNumeric(T value) {
+			AbsNumeric(value);
+		}
+
+		~AbsNaturalNumeric() {
+			dispose();
+		}
+
+		static string getClassName() {
+			return string("AbsNaturalNumeric");
+		}
+		
+		template<class U> virtual T operator % (U value) {
+			if(value == 0) {
+				cout << "Cannot perform the operation exception" << endl;
+				exit(1);
+			}
+			return (*value) % value;
+		}
+		
+		template<class U> virtual T operator %= (U value) {
+			if(value == 0) {
+				cout << "Cannot perform the operation exception" << endl;
+				exit(1);
+			}
+			*(this->value) %= value;
+			return *(this->value)
+		}
+		
+		template<class U> virtual T operator % (AbsNaturalNumeric<U> value) {
+			if(value == 0) {
+				cout << "Cannot perform the operation exception" << endl;
+				exit(1);
+			}
+			return (*value) % value.get();
+		}
+		
+		template<class U> virtual T operator %= (AbsNaturalNumeric<U> value) {
+			if(value == 0) {
+				cout << "Cannot perform the operation exception" << endl;
+				exit(1);
+			}
+			*(this->value) %= value.get();
+			return *(this->value);
+		}
+};
+
+#endif

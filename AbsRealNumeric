@@ -1,0 +1,25 @@
+#ifndef ADT_REALAbsNumericH
+#define ADT_REALAbsNumericH
+
+#include<AbsNumeric>
+template<class T> class AbsRealNumeric : public AbsNumeric<T> {
+	public:
+		AbsRealNumeric() {
+			AbsNumeric();
+		}
+
+		AbsRealNumeric(T value) {
+			AbsNumeric(value);
+		}
+
+		~AbsRealNumeric() {
+			dispose();
+		}
+
+		static string getClassName() {
+			return string("AbsRealNumeric");
+		}
+};
+
+
+#endif

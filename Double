@@ -1,21 +1,20 @@
 #ifndef ADT_DOUBLEH
 #define ADT_DOUBLEH
 
-#include<AbsNumeric>
+#include<AbsRealNumeric>
 
-class Double : public Numeric<double> {
+class Double : public AbsRealNumeric<double> {
 	public:
 
 		static const double MAXVALUE = 1.7 * 10E+308;
 		static const double MINVALUE = 1.7 * 10E-308;
 
 		Double() {
-			Numeric();
+			AbsRealNumeric();
 		}
 
 		Double(double value){
-			this->value = new double;
-			*this->value = value;
+			AbsRealNumeric(value);
 		}
 
 		static string getClassName() {

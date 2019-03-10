@@ -1,21 +1,21 @@
 #ifndef ADT_LONGH
 #define ADT_LONGH
 
-#include<AbsNumeric>
+#include<AbsNaturalNumeric>
 
-class Long : public Numeric<long> {
+class Long : public AbsNaturalNumeric<long> {
 	public:
 
 		static const long MAXVALUE = 2147483646;
 		static const long MINVALUE = -2147483647;
 
 		Long() {
-			Numeric();
+			AbsNumeric();
 			
 		}
 		
 		Long(long value){
-			Numeric::value = new long;
+			AbsNumeric::value = new long;
 			*this->value = value;
 		}
 

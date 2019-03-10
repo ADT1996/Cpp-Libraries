@@ -1,35 +1,35 @@
 #ifndef ADT_INTH
-#define ADTINTH
-extern "C++" {
-#include<Numeric>
+#define ADT_INTH
 
-	class Integer : Numeric<int> {
-		public:
-			Integer(int* value) {
-				this->value = value;
+#include<AbsNaturalNumeric>
+
+class Integer : public AbsNaturalNumeric<int> {
+	public:
+		Integer(int value) {
+			*(this->value) = value;
 #ifdef _64BIT
-				MAXVALUE = 2147483646;
-				MINVALUE = -2147483647;
+			const int MAXVALUE = 2147483646;
+			const int MINVALUE = -2147483647;
 #else
-				MAXVALUE = 32766;
-				MINVALUE = -32767;
+			const int MAXVALUE = 32766;
+			const int MINVALUE = -32767;
 #endif
-			}
+		}
 
-			virtual string toString() {
-				return string(*value);
-			}
+		virtual string toString() {
+			return string(*value);
+		}
 
-			virtual bool equal(object* object) {
-				if(object == null) return false;
-				if(typeid(Numeric) == typeid(object))
-					if(*value == ((Numeric*)object)->*value) return true;
-				return false;
-			}
+		virtual bool equal(object *object) {
+			if(object == null) return false;
+			if(typeid(AbsNumeric) == typeid(object))
+				if(*value == ((AbsNumeric*)object)->*value) return true;
+			return false;
+		}
 
-			static string getClassName() {
-				return string("Integer");
-			}
-	};
-}
+		static string getClassName() {
+			return string("Integer");
+		}
+};
+
 #endif
