@@ -6,8 +6,8 @@
 class Short : public AbsNaturalNumeric<short> {
 	public:
 
-		const short MAXVALUE = 32766;
-		const short MINVALUE = -32767;
+		static const short MAXVALUE = 32766;
+		static const short MINVALUE = -32767;
 
 		Short() : AbsNaturalNumeric(0) {
 		}
