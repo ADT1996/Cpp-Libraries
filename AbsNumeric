@@ -3,20 +3,15 @@
 
 #include<Object>
 #include<math.h>
+#include<typeinfo>
 
 template<class T> class AbsNumeric : public Object {
 	protected:
 		T* value;
 
 	public:
-
-		AbsNumeric() {
-			value = new T;
-			*value = 0;
-		}
-		
 		AbsNumeric(T value) {
-			value = new T;
+			this->value = new T;
 			*this->value = value;
 		}
 
@@ -43,13 +38,13 @@ template<class T> class AbsNumeric : public Object {
 
 		virtual T sqrt() {
 			if(get() < 0) {
-				cout << T::getClassName << ": SQRT exception" << endl;
+				cout << typeid(T).name() << ": SQRT exception" << endl;
 				exit(1);
 			}
 			return (T)::sqrt(this->get());
 		}
 		
-		template<class U> virtual int compareTo(U value) {
+		template<class U> int compareTo(U value) {
 			if((*value) == value)
 				return 0;
 			if((*value) < value)
@@ -57,7 +52,7 @@ template<class T> class AbsNumeric : public Object {
 			return 1;
 		}
 		
-		template<class U> virtual int compareTo(AbsNumeric<U> value) {
+		template<class U> int compareTo(AbsNumeric<U> value) {
 			if(this->get() == value.get())
 				return 0;
 			if(this->get() < value.get())
@@ -111,7 +106,7 @@ template<class T> class AbsNumeric : public Object {
 		}
 
 		static string getClassName() {
-			return string("AbsNumeric");
+			return string(typeid(T).name());
 		}
 
 		template<class U> T operator + (AbsNumeric<U> value) {

@@ -6,19 +6,20 @@
 class Float : public AbsRealNumeric<float> {
 	public:
 
-		static const double MAXVALUE = 1.7 * 10E+308;
-		static const double MINVALUE = 1.7 * 10E-308;
+		static const float MAXVALUE = 3.40282e+38;
+		static const float MINVALUE = 1.17549e-38;
 
-		Double() {
-			AbsRealNumeric();
+		Float() : AbsRealNumeric(0) {
 		}
 
-		Double(double value){
-			AbsRealNumeric(value);
+		template<class U> Float(U value) : AbsRealNumeric(value) {
+		}
+
+		template<class U> Float(AbsNumeric<U> value) : AbsRealNumeric(value.get()) {
 		}
 
 		static string getClassName() {
-			return string("Double");
+			return string("Float");
 		}
 };
 #endif

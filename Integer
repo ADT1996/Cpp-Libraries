@@ -5,25 +5,27 @@
 
 class Integer : public AbsNaturalNumeric<int> {
 	public:
-		Integer(int value) {
-			*(this->value) = value;
-#ifdef _64BIT
-			const int MAXVALUE = 2147483646;
-			const int MINVALUE = -2147483647;
-#else
-			const int MAXVALUE = 32766;
-			const int MINVALUE = -32767;
+#if CURRENTOS == 64
+		static const int MAXVALUE = 2147483646;
+		static const int MINVALUE = -2147483647;
+#elif CURRENTOS == 32
+		static const int MAXVALUE = 32766;
+		static const int MINVALUE = -32767;
 #endif
+
+		Integer() : AbsNaturalNumeric(0) {
 		}
 
-		virtual string toString() {
-			return string(*value);
+		template<class U> Integer(U value) : AbsNaturalNumeric(value) {
 		}
 
-		virtual bool equal(object *object) {
+		template<class U> Integer(AbsNumeric<U> value) : AbsNaturalNumeric(value.get()) {
+		}
+
+		virtual bool equal(Object *object) {
 			if(object == null) return false;
 			if(typeid(AbsNumeric) == typeid(object))
-				if(*value == ((AbsNumeric*)object)->*value) return true;
+				if((*value) == ((AbsNumeric*)object)->get()) return true;
 			return false;
 		}
 

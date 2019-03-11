@@ -4,16 +4,7 @@
 #include<AbsNumeric>
 template<class T> class AbsRealNumeric : public AbsNumeric<T> {
 	public:
-		AbsRealNumeric() {
-			AbsNumeric();
-		}
-
-		AbsRealNumeric(T value) {
-			AbsNumeric(value);
-		}
-
-		~AbsRealNumeric() {
-			dispose();
+		AbsRealNumeric(T value) : AbsNumeric<T>(value) {
 		}
 
 		static string getClassName() {

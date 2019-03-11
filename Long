@@ -9,14 +9,15 @@ class Long : public AbsNaturalNumeric<long> {
 		static const long MAXVALUE = 2147483646;
 		static const long MINVALUE = -2147483647;
 
-		Long() {
-			AbsNumeric();
+		Long() :AbsNaturalNumeric(0) {
+			
 			
 		}
 		
-		Long(long value){
-			AbsNumeric::value = new long;
-			*this->value = value;
+		template<class U> Long(U value) : AbsNaturalNumeric(value) {
+		}
+
+		template<class U> Long(AbsNumeric<U> value) : AbsNaturalNumeric(value.get()) {
 		}
 
 		static string getClassName() {

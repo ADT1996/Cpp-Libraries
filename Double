@@ -9,12 +9,13 @@ class Double : public AbsRealNumeric<double> {
 		static const double MAXVALUE = 1.7 * 10E+308;
 		static const double MINVALUE = 1.7 * 10E-308;
 
-		Double() {
-			AbsRealNumeric();
+		Double() : AbsRealNumeric(0) {
 		}
 
-		Double(double value){
-			AbsRealNumeric(value);
+		template<class U> Double(U value) : AbsRealNumeric(value) {
+		}
+
+		template<class U> Double(AbsNumeric<U> value) : AbsRealNumeric(value.get()) {
 		}
 
 		static string getClassName() {

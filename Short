@@ -1,0 +1,32 @@
+#ifndef ADT_SHORTH
+#define ADT_SHORTH
+
+#include<AbsNaturalNumeric>
+
+class Short : public AbsNaturalNumeric<short> {
+	public:
+
+		const short MAXVALUE = 32766;
+		const short MINVALUE = -32767;
+
+		Short() : AbsNaturalNumeric(0) {
+		}
+
+		template<class U> Short(U value) : AbsNaturalNumeric(value) {
+		}
+
+		template<class U> Short(AbsNumeric<U> value) : AbsNaturalNumeric(value.get()) {
+		}
+
+		virtual bool equal(Object *object) {
+			if(object == null) return false;
+			if(typeid(AbsNumeric) == typeid(object))
+				if((*value) == ((AbsNumeric*)object)->get()) return true;
+			return false;
+		}
+
+		static string getClassName() {
+			return string("Short");
+		}
+};
+#endif
