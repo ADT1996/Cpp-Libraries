@@ -1,0 +1,30 @@
+#ifndef ADT_UINTH
+#define ADT_UINTH
+
+#include<AbsNaturalNumeric>
+
+class UInteger : public AbsNaturalNumeric<unsigned int> {
+	public:
+#if CURRENTOS == 64
+		static const unsigned int MAXVALUE = 4294967295 ;
+		static const unsigned int MINVALUE = 0;
+#elif CURRENTOS == 32
+		static const unsigned int MAXVALUE = 65535;
+		static const unsigned int MINVALUE = 0;
+#endif
+
+		UInteger() : AbsNaturalNumeric(0) {
+		}
+
+		template<class U> UInteger(U value) : AbsNaturalNumeric(value) {
+		}
+
+		template<class U> UInteger(AbsNumeric<U> value) : AbsNaturalNumeric(value.get()) {
+		}
+
+		static string getClassName() {
+			return string("UInteger");
+		}
+};
+
+#endif

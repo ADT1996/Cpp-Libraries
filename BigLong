@@ -1,0 +1,25 @@
+#ifndef ADT_BIGLONGH
+#define ADT_BIGLONGH
+
+#include<AbsNaturalNumeric>
+
+class BigLong : public AbsNaturalNumeric<long long> {
+	public:
+
+		static const long long MAXVALUE = 9223372036854775807;
+		static const long long MINVALUE = -9223372036854775808;
+
+		BigLong() :AbsNaturalNumeric(0) {
+		}
+		
+		template<class U> BigLong(U value) : AbsNaturalNumeric(value) {
+		}
+
+		template<class U> BigLong(AbsNumeric<U> value) : AbsNaturalNumeric(value.get()) {
+		}
+
+		static string getClassName() {
+			return string("BigLong");
+		}
+};
+#endif

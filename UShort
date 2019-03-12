@@ -1,0 +1,25 @@
+#ifndef ADT_USHORTH
+#define ADT_USHORTH
+
+#include<AbsNaturalNumeric>
+
+class UShort : public AbsNaturalNumeric<unsigned short> {
+	public:
+
+		static const unsigned short MAXVALUE = 65535;
+		static const unsigned short MINVALUE = 0;
+
+		UShort() : AbsNaturalNumeric(0) {
+		}
+
+		template<class U> UShortU value) : AbsNaturalNumeric(value) {
+		}
+
+		template<class U> UShort(AbsNumeric<U> value) : AbsNaturalNumeric(value.get()) {
+		}
+
+		static string getClassName() {
+			return string("UShort");
+		}
+};
+#endif

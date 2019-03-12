@@ -1,0 +1,25 @@
+#ifndef ADT_ULONGH
+#define ADT_ULONGH
+
+#include<AbsNaturalNumeric>
+
+class ULong : public AbsNaturalNumeric<unsigned long> {
+	public:
+
+		static const unsigned long MAXVALUE = 4294967295;
+		static const unsigned long MINVALUE = 0;
+
+		ULong() : AbsNaturalNumeric(0) {
+		}
+		
+		template<class U> ULong(U value) : AbsNaturalNumeric(value) {
+		}
+
+		template<class U> ULong(AbsNumeric<U> value) : AbsNaturalNumeric(value.get()) {
+		}
+
+		static string getClassName() {
+			return string("ULong");
+		}
+};
+#endif

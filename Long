@@ -6,8 +6,8 @@
 class Long : public AbsNaturalNumeric<long> {
 	public:
 
-		static const long MAXVALUE = 2147483646;
-		static const long MINVALUE = -2147483647;
+		static const long MAXVALUE = 2147483647;
+		static const long MINVALUE = -2147483648;
 
 		Long() :AbsNaturalNumeric(0) {
 			
