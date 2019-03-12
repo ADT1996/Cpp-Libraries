@@ -78,10 +78,8 @@ template<class T> class AbsNumeric : public Object {
 
 			if (value == 0)
 				return num + '0';
-			else if(q < 0) {
-				num += '-';
+			else if(value < 0)
 				q = -q;
-			}
 
 			if(q == 0) {
 				num += '0';
@@ -102,6 +100,8 @@ template<class T> class AbsNumeric : public Object {
 					e= (e*10) - (long long)(e*10);
 				}
 			}
+			if(value < 0)
+				num = '-' + num;
 			return num;
 		}
 

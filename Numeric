@@ -1,0 +1,15 @@
+#ifndef ADT_INCNUMERICH
+#define ADT_INCNUMERICH
+
+	#include<Integer>
+	#include<Long>
+	#include<Float>
+	#include<Double>
+	#include<Short>
+	#include<ULong>
+	#include<UShort>
+	#include<UInteger>
+	#include<UBigLong>
+	#include<BigLong>
+
+#endif
