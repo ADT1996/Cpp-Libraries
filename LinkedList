@@ -1,0 +1,74 @@
+#ifndef ADT_LINKEDLISTH
+#define ADT_LINKEDLISTH
+
+#include<AbsList>
+
+
+template<class T> class LinkedList : public Abs_List<T> {
+    protected:
+
+        #include<NodeLinkedList>
+        #undef ADT_NODELINKEDLISTH
+
+        unsigned int spaceFlag;
+
+        NodeLinkedList<NodeLinkedList<T> > *headFlag;
+        NodeLinkedList<NodeLinkedList<T> > *rearFlag;
+
+        NodeLinkedList<T> *head;
+        NodeLinkedList<T> *rear;
+	public:
+		virtual void add(T* value) {
+            if(head == null) {
+                head = rear = new NodeLinkedList<T>(value);
+                headFlag = rearFlag = new NodeLinkedList<NodeLinkedList<T> >(rear);
+                size++;
+                return;
+            }
+
+            rear->setNext(new NodeLinkedList<T>(value));
+            rear = rear->getNext();
+            size++;
+            if(size % spaceFlag == 0) {
+                NodeLinkedList<NodeLinkedList<T> > tempFlag = new NodeLinkedList<NodeLinkedList<T> >(rear);
+                rear->setNext(tempFlag);
+                rear = rear->getNext();
+            }
+        }
+
+		void addRange(Abs_List<T>* list) {
+            for(unsigned int i = 0; i < list.getSize() ; i++) {
+                add(list.get(i));
+            }
+        }
+
+		virtual void insert(T* value,unsigned int index) {
+            if(head == null) {
+                
+            }
+        }
+		void insert(Abs_List<T>*,unsigned int);
+		void remove(T*);
+		void removeRange(Abs_List<T>*);
+		void removeAt(unsigned int);
+		void Sort();
+		void swap(unsigned int,unsigned int);
+		void swap(T*,T*);
+
+		T* get(unsigned int);
+		Abs_List<T>* sub(unsigned int,unsigned int);
+		Abs_List<T>* sub(unsigned int);
+		long indexOf(T*);
+		long getSize();
+		long count(T*);
+		bool contain(T*);
+
+		virtual string toString() {
+			return string("Abstract List<") + T::getClassName() + ">@";
+		}
+		
+		static string getClassName() {
+			return string("Abstract List<") + T::getClassName() + ">";
+		}
+};
+#endif

@@ -6,8 +6,8 @@
 class Double : public AbsRealNumeric<double> {
 	public:
 
-		static const double MAXVALUE = 1.7 * 10E+307;
-		static const double MINVALUE = 1.7 * 10E-308;
+		static const double MAXVALUE = 1.79769e+308;
+		static const double MINVALUE = 2.22507e-308;
 
 		Double() : AbsRealNumeric(0) {
 		}

@@ -1,0 +1,53 @@
+#ifndef ADT_NODELINKEDLISTH
+#define ADT_NODELINKEDLISTH
+#include<Object>
+
+template<class T> class NodeLinkedList : public Object {
+    protected:
+        T *value;
+        NodeLinkedList<T> *pre;
+        NodeLinkedList<T> *next;
+    public:
+        NodeLinkedList() : Object() {
+            value = pre = next = null;
+        }
+
+        NodeLinkedList(T* value) : Object() {
+            this->value = new T();
+            this->value = value;
+            pre = next = null;
+        }
+
+        virtual void dispose(){
+            pre->setNext(next);
+            delete value;
+        }
+
+        virtual void setNext(NodeLinkedList<T> *node) {
+            node->pre = this;
+            node->next = this->next;
+            this->next->pre = node;
+            this->next = node;
+        }
+
+        virtual void setPre(NodeLinkedList<T> *node) {
+            node->next = this;
+            node->pre = this->pre;
+            this->pre->next = node;
+            this->pre = node;
+        }
+
+        virtual T getValue() {
+            return *this->value;
+        }
+
+        virtual NodeLinkedList<T>* getPre() {
+            return this->pre;
+        }
+
+        virtual NodeLinkedList<T>* getNext() {
+            return this->next;
+        }
+};
+
+#endif

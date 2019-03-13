@@ -11,5 +11,6 @@
 	#include<UInteger>
 	#include<UBigLong>
 	#include<BigLong>
+	#include<BigDouble>
 
 #endif

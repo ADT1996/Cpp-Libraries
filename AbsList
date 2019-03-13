@@ -4,33 +4,33 @@
 
 template<class T> class Abs_List : public Object {
 	protected:
-		long size;
+		unsigned int size;
 	public:
+		Abs_List() {
+			size = 0;
+		}
+
 		void add(T*);
 		void addRange(Abs_List<T>*);
-		void insert(T*,long);
-		void insert(Abs_List<T>*,long);
+		void insert(T*,unsigned int);
+		void insert(Abs_List<T>*,unsigned int);
 		void remove(T*);
 		void removeRange(Abs_List<T>*);
-		void removeAt(long);
+		void removeAt(unsigned int);
 		void Sort();
-		void swap(long,long);
+		void swap(unsigned int,unsigned int);
 		void swap(T*,T*);
 
-		T* get(long);
-		Abs_List<T>* sub(long,long);
-		Abs_List<T>* sub(long);
-		long indexOf(T*);
-		long getSize();
-		long count(T*);
+		T* get(unsigned int);
+		Abs_List<T>* sub(unsigned int,unsigned int);
+		Abs_List<T>* sub(unsigned int);
+		unsigned int indexOf(T*);
+		unsigned int getSize();
+		unsigned int count(T*);
 		bool contain(T*);
 
-		virtual string toString() {
-			return string("Abstract List<") + T::getClassName() + ">@";
-		}
+		virtual string toString();
 		
-		static string getClassName() {
-			return string("Abstract List<") + T::getClassName() + ">";
-		}
+		static string getClassName();
 };
 #endif

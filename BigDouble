@@ -1,0 +1,25 @@
+#ifndef ADT_BIGDOUBLEH
+#define ADT_BIGDOUBLEH
+
+#include<AbsRealNumeric>
+
+class BigDouble : public AbsRealNumeric<long double> {
+	public:
+
+		static const long double MAXVALUE = 1.1E+4932;
+		static const long double MINVALUE = 3.4E-4932;
+
+		BigDouble() : AbsRealNumeric(0) {
+		}
+
+		template<class U> BigDouble(U value) : AbsRealNumeric(value) {
+		}
+
+		template<class U> BigDouble(AbsNumeric<U> value) : AbsRealNumeric(value.get()) {
+		}
+
+		static string getClassName() {
+			return string("BigDouble");
+		}
+};
+#endif
